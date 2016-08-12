@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<mvc:resources mapping="/static/**" location="/static/" />
+	<mvc:resources mapping="/tpl/**" location="/tpl/" />
+	
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg value="UTF-8" />
+			</bean>
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+			<bean
+				class="org.springframework.http.converter.ByteArrayHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>image/jpeg</value>
+						<value>image/jpg</value>
+						<value>image/png</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<mvc:interceptors>
+		<!-- 
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="lang" />
+		</bean>
+		 -->
+		<bean class="com.xinma.portal.interceptor.BlackListInterceptor" />
+	</mvc:interceptors>
+
+	<context:component-scan base-package="com.xinma.portal.web" />
+	
+	<bean id="freemarkerConfiguration"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location" value="classpath:freemarker.properties" />
+	</bean>
+
+	<bean id="freeMarkerConfigurer"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPaths">
+			<list>
+				<value>/tpl/</value>
+				<!-- 
+				<value>${portal.remote.template.location}</value>
+				 -->
+			</list>
+		</property>
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="freemarkerSettings" ref="freemarkerConfiguration" />
+	</bean>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="requestContextAttribute" value="ctp" />
+		<property name="cache" value="true" />
+		<property name="prefix" value="" />
+		<property name="suffix" value=".html" />
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="order" value="0" />
+	</bean>
+</beans>
