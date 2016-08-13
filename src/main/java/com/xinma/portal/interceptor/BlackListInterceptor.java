@@ -30,13 +30,20 @@ public class BlackListInterceptor extends HandlerInterceptorAdapter {
 				+ servletPath + ">"); // access into blackListInterceptor,
 										// client ip is <0:0:0:0:0:0:0:1>,
 										// servlet path is <>
-		System.out.println(request.getRequestURL()); // http://localhost:8080/portal/hello/world
-		System.out.println(request.getRequestURI()); // /portal/hello/world
-		System.out.println(request.getPathInfo()); // /hello/world
-		System.out.println(request.getProtocol());// HTTP/1.1
-		System.out.println(request.getScheme());// http
-		System.out.println(request.getServerName());// localhost
+//		System.out.println(request.getRequestURL()); // http://localhost:8080/portal/hello/world
+//		System.out.println(request.getRequestURI()); // /portal/hello/world
+//		System.out.println(request.getPathInfo()); // /hello/world
+//		System.out.println(request.getProtocol());// HTTP/1.1
+//		System.out.println(request.getScheme());// http
+//		System.out.println(request.getServerName());// localhost
 
+
+		if ("/favicon.ico".equals(servletPath)) {
+			return false;
+		}
+			
+		//判断请求域名及schema,如果请求域名为扫码域名，则重定向
+		
 		return super.preHandle(request, response, handler);
 	}
 

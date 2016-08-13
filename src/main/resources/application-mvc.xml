@@ -42,13 +42,15 @@
 	</mvc:annotation-driven>
 
 	<mvc:interceptors>
-		<!-- 
-		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-			<property name="paramName" value="lang" />
-		</bean>
-		 -->
 		<bean class="com.xinma.portal.interceptor.BlackListInterceptor" />
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/static/**" />
+			<bean class="com.xinma.portal.interceptor.TagQueryInterceptor" />
+		</mvc:interceptor>
 	</mvc:interceptors>
+
 
 	<context:component-scan base-package="com.xinma.portal.web" />
 	
