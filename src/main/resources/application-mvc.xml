@@ -42,7 +42,7 @@
 	</mvc:annotation-driven>
 
 	<mvc:interceptors>
-		<bean class="com.xinma.portal.interceptor.BlackListInterceptor" />
+		<bean class="com.xinma.portal.interceptor.GlobalInterceptor" />
 		
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />

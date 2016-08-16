@@ -15,6 +15,31 @@
 		<property name="defaultLocale" value="zh_CN" />
 	</bean>
 
+	<bean id="aliyunAccessConfig" class="com.xinma.portal.config.AliyunAccessConfig">
+		<property name="ossEndPoint" value="${oss.endpoint}" />
+		<property name="ossAccessId" value="${oss.accessId}" />
+		<property name="ossAccessKey" value="${oss.accessKey}" />
+		<property name="ossBucketName" value="${oss.bucketName}" />
+		
+		<property name="otsEndPoint" value="${ots.endpoint}" />
+		<property name="otsAccessId" value="${ots.accessId}" />
+		<property name="otsAccessKey" value="${ots.accessKey}" />
+		<property name="otsInstanceName" value="${ots.instanceName}" />
+		
+		<property name="mnsEndPoint" value="${mns.endpoint}" />
+		<property name="mnsAccessId" value="${mns.accessId}" />
+		<property name="mnsAccessKey" value="${mns.accessKey}" />
+		<property name="backEndToPortalQueueName" value="${mns.queue.backEndToPortalQueue}" />
+		<property name="portalToBackEndQueueName" value="${mns.queue.portalToBackEndQueue}" />
+	</bean>
+
+	<bean id="portalAppConfig" class="com.xinma.portal.config.PortalAppConfig">
+		<property name="shortDomain" value="${system.short.domain.name}" />
+		<property name="longDomain" value="${system.long.domain.name}" />
+		<property name="longServerName" value="${system.long.servername}" />
+		<property name="longServerNameScheme" value="${system.long.servername.scheme}" />
+	</bean>
+	
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="defaultEncoding" value="UTF-8" />
