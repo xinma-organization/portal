@@ -15,6 +15,28 @@
 		<property name="defaultLocale" value="zh_CN" />
 	</bean>
 
+	<bean id="otsClient" class="com.aliyun.openservices.ots.OTSClient">
+		<constructor-arg value="${ots.endpoint}"/>
+		<constructor-arg value="${ots.accessId}"/>
+		<constructor-arg value="${ots.accessKey}"/>
+		<constructor-arg value="${ots.instanceName}"/>
+	</bean>
+
+	<bean id="mnsClient" class="com.aliyun.mns.client.DefaultMNSClient">
+		<constructor-arg value="${mns.endpoint}"/>
+		<constructor-arg value="${mns.accessId}"/>
+		<constructor-arg value="${mns.accessKey}"/>
+	</bean>
+	
+	<bean id="tagTableService" class="com.xinma.base.datastore.impl.aliyun.table.TagTableServiceImpl">
+		<constructor-arg ref="otsClient"/>
+	</bean>
+	
+	<bean id="messageService" class="com.xinma.base.datastore.impl.aliyun.message.MessageServiceImpl">
+		<constructor-arg ref="mnsClient"/>
+	</bean>
+	
+	
 	<bean id="aliyunAccessConfig" class="com.xinma.portal.config.AliyunAccessConfig">
 		<property name="ossEndPoint" value="${oss.endpoint}" />
 		<property name="ossAccessId" value="${oss.accessId}" />
