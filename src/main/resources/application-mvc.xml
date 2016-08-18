@@ -44,15 +44,18 @@
 	<mvc:interceptors>
 		<bean class="com.xinma.portal.interceptor.GlobalInterceptor" />
 		
+		<!-- 
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<mvc:exclude-mapping path="/static/**" />
 			<bean class="com.xinma.portal.interceptor.TagQueryInterceptor" />
 		</mvc:interceptor>
+		 -->
 	</mvc:interceptors>
 
 
 	<context:component-scan base-package="com.xinma.portal.web" />
+	<context:component-scan base-package="com.xinma.portal.log.handler" />  
 	
 	<bean id="freemarkerConfiguration"
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
