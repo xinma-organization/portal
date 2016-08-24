@@ -10,6 +10,8 @@
 
 	<context:annotation-config />
 	
+	<context:component-scan base-package="com.xinma.portal.cache" />
+	
 	<bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
 		<property name="defaultLocale" value="zh_CN" />
@@ -62,6 +64,24 @@
 		<property name="longServerNameScheme" value="${system.long.servername.scheme}" />
 	</bean>
 	
+	 <!-- redis连接池的配置 -->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+      <property name="maxTotal" value="${redis.pool.maxTotal}"/>
+      <property name="maxIdle" value="${redis.pool.maxIdle}"/>
+      <property name="minIdle" value="${redis.pool.minIdle}"/>
+      <property name="testOnBorrow" value="${redis.pool.testOnBorrow}"/>
+      <property name="testOnReturn" value="${redis.pool.testOnReturn}"/>
+    </bean>
+    
+    <!-- redis的连接池pool -->
+    <bean id = "jedisPool" class="redis.clients.jedis.JedisPool">
+      <constructor-arg index="0" ref="jedisPoolConfig"/>
+      <constructor-arg index="1" value="${redis.host}"/>
+      <constructor-arg index="2" value="${redis.port}" type="int"/>
+      <constructor-arg index="3" value="${redis.timeout}" type="int"/>
+      <constructor-arg index="4" value="${redis.password}"/>
+    </bean>
+
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="defaultEncoding" value="UTF-8" />
