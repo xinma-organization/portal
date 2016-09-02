@@ -10,7 +10,10 @@
 
 	<context:annotation-config />
 	
+	<context:component-scan base-package="com.xinma.portal.listener" />
 	<context:component-scan base-package="com.xinma.portal.cache" />
+	<context:component-scan base-package="com.xinma.portal.task" />
+	<context:component-scan base-package="com.xinma.portal.service" />
 	
 	<bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">

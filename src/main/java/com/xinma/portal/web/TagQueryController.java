@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.xinma.base.datastore.model.tag.TagBasicInfoEO;
-import com.xinma.portal.common.PortalConstants;
+import com.xinma.portal.model.TagQueryResult;
+import com.xinma.portal.service.TagQueryService;
 
 /**
  ** URL中经常遇到路径中有点"."，而点是特殊字符，比如.html, .do等等， 所以Spring
@@ -27,15 +26,14 @@ import com.xinma.portal.common.PortalConstants;
 @Controller
 public class TagQueryController {
 
+	private TagQueryService tagQueryService;
+
 	@RequestMapping(value = "{code}", method = RequestMethod.GET)
 	public String tagQuery(@PathVariable String code, HttpServletRequest request, Model model) {
-		try {
-			TagBasicInfoEO tagBasicInfo = (TagBasicInfoEO) request.getAttribute(PortalConstants.tagBasicInfoAttr);
-			System.out.println(code);
-			model.addAttribute("message", new ObjectMapper().writeValueAsString(tagBasicInfo));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
+		TagQueryResult tagQueryResult = tagQueryService.tagQuery(request);
+
+		model.addAttribute("data", tagQueryResult);
 
 		return "query";
 	}

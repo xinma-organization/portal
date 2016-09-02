@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xinma.base.datastore.enums.PortalDownloadMessageType;
@@ -15,6 +16,13 @@ import com.xinma.portal.config.AliyunAccessConfig;
 import com.xinma.portal.log.PortalCustomException;
 import com.xinma.portal.log.error.PortalTaskError;
 
+/**
+ * portal项目接收消息队列的消息处理线程
+ * 
+ * @author Alauda
+ *
+ */
+@Component
 public class PortalDownloadMessageTask implements Runnable {
 
 	@Autowired
