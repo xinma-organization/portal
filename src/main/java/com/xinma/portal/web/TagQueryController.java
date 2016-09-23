@@ -2,6 +2,7 @@ package com.xinma.portal.web;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,7 @@ import com.xinma.portal.service.TagQueryService;
 @Controller
 public class TagQueryController {
 
+	@Autowired
 	private TagQueryService tagQueryService;
 
 	@RequestMapping(value = "{code}", method = RequestMethod.GET)
@@ -35,6 +37,6 @@ public class TagQueryController {
 
 		model.addAttribute("data", tagQueryResult);
 
-		return "query";
+		return "default/index";
 	}
 }

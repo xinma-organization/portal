@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<!--
+<base href="http://short.rcc.co:8080/portal/tpl/default/">
+-->
+<head>
+	<meta charset="UTF-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+	<script type="text/javascript" src="js/flexible.js"></script>
+
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/cube_y.min.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+	<!-- Add the slick-theme.css if you want default styling -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
+
+</head>
+
+<body>
+	<!-- 产品图片轮播 -->
+	<div class="imageSlider">
+	  <div><div class="image"> <img src="images/slider-1.jpg"></div></div>
+	  <div><div class="image"> <img src="images/slider-2.jpg"></div></div>
+	  <div><div class="image"> <img src="images/slider-3.jpg"></div></div>
+	  <div><div class="image"> <img src="images/slider-4.jpg"></div></div>
+	  <div><div class="image"> <img src="images/slider-5.jpg"></div></div>
+	  <div><div class="image"> <img src="images/slider-6.jpg"></div></div>
+	  <div><div class="image"> <img src="images/slider-7.jpg"></div></div>
+	  <div><div class="image"> <img src="images/slider-8.jpg"></div></div>
+	  <div><div class="image"> <img src="images/slider-9.jpg"></div></div>
+	  <div><div class="image"> <img src="images/slider-10.jpg"></div></div>
+	</div>
+
+	<!-- 企业基本联系方式 -->
+	<div class="basic_contact">
+		<ul class="contact_block">
+			<li class="contact_tel">
+				<span>客服电话：</span>
+				<a href="tel:400-800-8888">&nbsp&nbsp400-800-8888</a>
+			</li>
+
+			<li class="contact_website">
+				<a href="http:www.baidu.com">官方网站</a>
+			</li>
+
+			<li class="contact_weixin">
+				<a href="javascript:;"></a>
+				<div class="fl">微&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp信：</div>
+				<a href="#openModal">&nbsp&nbsp透云科技</a>
+			</li>
+	
+			<li class="contact_addr">
+				<span>上海市静安区共和新路1209号7幢418室</span>
+			</li>
+		</ul>
+	</div>
+
+	<div class="content">
+		<!-- 产品详情 -->
+		<div class="tree_box product_detail">
+			<div class="tree_box_content">	
+				<div class="tree_box_title">产品详情</div>
+				<div class="product_info">
+
+						<p>产品介绍：</p>
+						<p>绿力冬瓜茶是以冬瓜为原始材料，经先进生产工艺萃取提炼而成。具有清热解毒、生津止渴、清肝明目之功效，是延年益寿的理想饮品。</p><p><img src="https://ty-static.oss-cn-hangzhou.aliyuncs.com/gallery/3/20160113112347-0881.jpg" alt="20160113112347-0881.jpg" style="width: 364px; height: 314px; " height="314" width="364"/></p>
+				</div>
+
+				<div class="arrow_down" onclick="contentExpandAndShrink(this)"></div>
+			</div>
+		</div>
+
+		<div class="tree_box access_log">
+			<div class="tree_box_content">	
+				<div class="tree_box_title">访问记录</div>
+				<div class="log_list">
+				    <p>上海市浦东新区</p>
+				    <span>2016-08-32 15:32:43</span>
+				    <p>辽宁省 沈阳市</p>
+				    <span>2016-08-32 09:52:24</span>
+				    <p>江苏省 徐州市</p>
+				    <span>2016-08-32 13:32:28</span>
+
+				  	<p>上海市</p>
+				    <span>2016-08-32 15:32:43</span>
+				    <p>辽宁省 沈阳市</p>
+				    <span>2016-08-32 09:52:24</span>
+				    <p>江苏省 徐州市</p>
+				    <span>2016-08-32 13:32:28</span>
+				</div>
+
+				<div class="arrow_down" onclick="contentExpandAndShrink(this)"></div>
+			</div>
+		</div>
+
+	</div>
+
+	<div id="openModal" class="modalDialog">
+		<div>
+			<a href="#close" title="Close" class="close">X</a>
+			<h2>Modal Box</h2>
+			<p>This is a sample modal box that can be created using the powers of CSS3.</p>
+			<p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users.</p>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/3.1.0/jquery.min.js"></script>
+	<!--
+	<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	-->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+
+	<script type="text/javascript">
+		
+		// 图片轮播脚本
+		$(document).ready(function(){
+		  $('.imageSlider').slick({
+		  	dots: true,
+		  	speed: 300,
+  			slidesToShow: 1,
+		    autoplay: true,
+		    autoplaySpeed: 1000,
+		    fade: true
+		  });
+		});
+		
+		// 是否是微信浏览器
+		function is_weixn(){  
+		    var ua = navigator.userAgent.toLowerCase();  
+		    if(ua.match(/MicroMessenger/i)=="micromessenger") {  
+		        return true;  
+		    } else {  
+		        return false;  
+		    }  
+		}  
+				// div收缩与扩展
+		function contentExpandAndShrink(obj) {
+			if($(obj).hasClass('arrow_down')) {
+
+				$(obj).prev().css({
+					overflow: 'initial',
+					height: 'auto'
+				});
+				$(obj).removeClass('arrow_down').addClass('arrow_up');
+
+			} else if ($(obj).hasClass('arrow_up')) {
+
+				$(obj).prev().css({
+					overflow: 'hidden',
+					height: '4.266667rem'
+				});
+				$(obj).removeClass('arrow_up').addClass('arrow_down');
+
+			}
+		}
+
+	</script>
+</body>
+</html>

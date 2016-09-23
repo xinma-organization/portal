@@ -11,6 +11,7 @@ import org.springframework.web.context.ContextLoaderListener;
 import com.xinma.portal.log.PortalCustomException;
 import com.xinma.portal.log.error.PortalListenerError;
 import com.xinma.portal.task.PortalExecutors;
+import com.xinma.portal.util.JerseyClientPool;
 
 public class CustomContextLoaderListener extends ContextLoaderListener {
 
@@ -20,7 +21,7 @@ public class CustomContextLoaderListener extends ContextLoaderListener {
 	public void contextInitialized(ServletContextEvent event) {
 		try {
 			super.contextInitialized(event);
-			// TODO
+			JerseyClientPool.initPool();
 		} catch (Throwable e) {
 			logger.error("catch exception in ContextListener.java contextInitialized() method.",
 					new PortalCustomException(e, PortalListenerError.ContextInitializedFailed));
@@ -62,7 +63,7 @@ public class CustomContextLoaderListener extends ContextLoaderListener {
 			logger.error("catch exception in ContextListener.java contextDestroyed() method.",
 					new PortalCustomException(e, PortalListenerError.ContextDestroyedFailed));
 		} finally {
-			// TODO
+			JerseyClientPool.destroy();
 		}
 
 	}
