@@ -26,12 +26,7 @@
 	  <div><div class="image"> <img src="images/slider-2.jpg"></div></div>
 	  <div><div class="image"> <img src="images/slider-3.jpg"></div></div>
 	  <div><div class="image"> <img src="images/slider-4.jpg"></div></div>
-	  <div><div class="image"> <img src="images/slider-5.jpg"></div></div>
 	  <div><div class="image"> <img src="images/slider-6.jpg"></div></div>
-	  <div><div class="image"> <img src="images/slider-7.jpg"></div></div>
-	  <div><div class="image"> <img src="images/slider-8.jpg"></div></div>
-	  <div><div class="image"> <img src="images/slider-9.jpg"></div></div>
-	  <div><div class="image"> <img src="images/slider-10.jpg"></div></div>
 	</div>
 
 	<!-- 企业基本联系方式 -->
@@ -97,13 +92,12 @@
 		</div>
 
 	</div>
-
 	<div id="openModal" class="modalDialog">
 		<div>
 			<a href="#close" title="Close" class="close">X</a>
-			<h2>Modal Box</h2>
-			<p>This is a sample modal box that can be created using the powers of CSS3.</p>
-			<p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users.</p>
+			<p style=" font-size: 0.4rem">长按二维码</p>
+			<p>选择"识别图中二维码"</p>
+			<img src="images/ningyun_weixin.jpg" alt="凝云科技" style="vertical-align: middle">
 		</div>
 	</div>
 
@@ -122,9 +116,15 @@
 		  	speed: 300,
   			slidesToShow: 1,
 		    autoplay: true,
-		    autoplaySpeed: 1000,
+		    autoplaySpeed: 1500,
 		    fade: true
 		  });
+
+		  if(!is_weixn()) {
+		  	$(".fl").next().remove();
+		  	$(".fl").after("<p>（请在微信中打开）</p>");
+		  	$(".fl").parent().addClass('clear_after');
+		  }
 		});
 		
 		// 是否是微信浏览器

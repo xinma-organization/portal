@@ -49,6 +49,10 @@ body {
 	content: none;
 }
 
+.basic_contact .contact_block .clear_after:after {
+	content: none;
+}
+
 .basic_contact .contact_block .contact_addr {
 	border-bottom : 0.026667rem solid #e5e5e5;
 	color: #000;
@@ -159,10 +163,11 @@ body {
 }
 
 .modalDialog > div {
-	width: 400px;
+	width: 5.333333rem;
 	position: relative;
-	margin: 10% auto;
-	padding: 5px 20px 13px 20px;
+	margin: 35% auto;
+	padding: 0.266667rem 0.373333rem;
+	text-align:center;
 	border-radius: 10px;
 	background: #fff;
 	background: -moz-linear-gradient(#fff, #999);
