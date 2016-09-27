@@ -1,18 +1,15 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
-<!--
-<base href="http://short.rcc.co:8080/portal/tpl/default/">
--->
+<html lang="en">	
 <head>
 	<meta charset="UTF-8">
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="yes" name="apple-touch-fullscreen">
     <meta content="telephone=no,email=no" name="format-detection">
-	<script type="text/javascript" src="js/flexible.js"></script>
+	<script type="text/javascript" src="${data.base}js/flexible.min.js"></script>
 
-	<title>Document</title>
-	<link rel="stylesheet" type="text/css" href="css/cube_y.min.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<title>产品展示</title>
+	<link rel="stylesheet" type="text/css" href="${data.base}css/cube_y.min.css">
+	<link rel="stylesheet" type="text/css" href="${data.base}css/main.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
 	<!-- Add the slick-theme.css if you want default styling -->
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
@@ -22,11 +19,11 @@
 <body>
 	<!-- 产品图片轮播 -->
 	<div class="imageSlider">
-	  <div><div class="image"> <img src="images/slider-1.jpg"></div></div>
-	  <div><div class="image"> <img src="images/slider-2.jpg"></div></div>
-	  <div><div class="image"> <img src="images/slider-3.jpg"></div></div>
-	  <div><div class="image"> <img src="images/slider-4.jpg"></div></div>
-	  <div><div class="image"> <img src="images/slider-6.jpg"></div></div>
+	  <div><div class="image"> <img src="${data.base}images/slider-1.jpg"></div></div>
+	  <div><div class="image"> <img src="${data.base}images/slider-2.jpg"></div></div>
+	  <div><div class="image"> <img src="${data.base}images/slider-3.jpg"></div></div>
+	  <div><div class="image"> <img src="${data.base}images/slider-4.jpg"></div></div>
+	  <div><div class="image"> <img src="${data.base}images/slider-6.jpg"></div></div>
 	</div>
 
 	<!-- 企业基本联系方式 -->
@@ -38,11 +35,10 @@
 			</li>
 
 			<li class="contact_website">
-				<a href="http:www.baidu.com">官方网站</a>
+				<a href="http://www.baidu.com">官方网站</a>
 			</li>
 
 			<li class="contact_weixin">
-				<a href="javascript:;"></a>
 				<div class="fl">微&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp信：</div>
 				<a href="#openModal">&nbsp&nbsp透云科技</a>
 			</li>
@@ -72,19 +68,10 @@
 			<div class="tree_box_content">	
 				<div class="tree_box_title">访问记录</div>
 				<div class="log_list">
-				    <p>上海市浦东新区</p>
-				    <span>2016-08-32 15:32:43</span>
-				    <p>辽宁省 沈阳市</p>
-				    <span>2016-08-32 09:52:24</span>
-				    <p>江苏省 徐州市</p>
-				    <span>2016-08-32 13:32:28</span>
-
-				  	<p>上海市</p>
-				    <span>2016-08-32 15:32:43</span>
-				    <p>辽宁省 沈阳市</p>
-				    <span>2016-08-32 09:52:24</span>
-				    <p>江苏省 徐州市</p>
-				    <span>2016-08-32 13:32:28</span>
+					<#list data.accesslogs as item>	
+						<p>${item.address.fullAddress}</p>
+				    	<span>${item.time?string('yyyy-MM-dd HH:mm:ss')}</span>
+					</#list>
 				</div>
 
 				<div class="arrow_down" onclick="contentExpandAndShrink(this)"></div>
@@ -97,7 +84,7 @@
 			<a href="#close" title="Close" class="close">X</a>
 			<p style=" font-size: 0.4rem">长按二维码</p>
 			<p>选择"识别图中二维码"</p>
-			<img src="images/ningyun_weixin.jpg" alt="凝云科技" style="vertical-align: middle">
+			<img src="${data.base}images/ningyun_weixin.jpg" alt="凝云科技" style="vertical-align: middle">
 		</div>
 	</div>
 
@@ -119,12 +106,11 @@
 		    autoplaySpeed: 1500,
 		    fade: true
 		  });
-
 		  if(!is_weixn()) {
-		  	$(".fl").next().remove();
-		  	$(".fl").after("<p>（请在微信中打开）</p>");
-		  	$(".fl").parent().addClass('clear_after');
-		  }
+			  	$(".fl").next().remove();
+			  	$(".fl").after("<p>（请在微信中打开）</p>");
+			  	$(".fl").parent().addClass('clear_after');
+			  }
 		});
 		
 		// 是否是微信浏览器

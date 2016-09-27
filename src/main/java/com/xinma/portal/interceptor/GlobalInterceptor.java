@@ -52,10 +52,12 @@ public class GlobalInterceptor extends HandlerInterceptorAdapter {
 		// 此处信息也可以解析nginx或tomcat日志的access log
 		String clientIp = ServletRequestHelper.getClientIp(request);
 		String servletPath = request.getServletPath();
-		logger.info("access into blackListInterceptor, client ip is <{}>,, servlet path is <{}>", clientIp,
-				servletPath);
+		logger.info("request.getPathInfo() is <{}>", request.getPathInfo());
+		logger.info("access into blackListInterceptor, client ip is <{}>, servlet path is <{}>", clientIp, servletPath);
 
-		if ("/favicon.ico".equals(servletPath)) {
+		if (StringUtils.isBlank(servletPath) && StringUtils.isBlank(request.getPathInfo())) {
+			return false;
+		} else if ("/favicon.ico".equals(servletPath)) {
 			logger.warn("request servletPath is < /favicon.ico >");
 			return false;
 		}

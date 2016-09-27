@@ -1,8 +1,6 @@
-body {
-	font-size: 0.346667rem !important;
-}
-
 .imageSlider {
+	width: 100%;
+	overflow-x: hidden;
 	height: 5.333333rem;
 }
 

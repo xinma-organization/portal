@@ -1,5 +1,8 @@
 package com.xinma.portal.web;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.xinma.portal.config.PortalAppConfig;
 import com.xinma.portal.model.TagQueryResult;
 import com.xinma.portal.service.TagQueryService;
 
@@ -28,6 +32,9 @@ import com.xinma.portal.service.TagQueryService;
 public class TagQueryController {
 
 	@Autowired
+	private PortalAppConfig portalAppConfig;
+
+	@Autowired
 	private TagQueryService tagQueryService;
 
 	@RequestMapping(value = "{code}", method = RequestMethod.GET)
@@ -35,7 +42,12 @@ public class TagQueryController {
 
 		TagQueryResult tagQueryResult = tagQueryService.tagQuery(request);
 
-		model.addAttribute("data", tagQueryResult);
+		Map<String, Object> data = new HashMap<>();
+
+		String base = portalAppConfig.getLongServerName() + "tpl/default/";
+		data.put("base", base);
+		data.put("accesslogs", tagQueryResult.getAccessLogs());
+		model.addAttribute("data", data);
 
 		return "default/index";
 	}

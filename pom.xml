@@ -258,10 +258,12 @@
 						</goals>
 						<configuration>
 							<tasks>
+								<!--
 								<delete>
 									<fileset dir="${project.build.outputDirectory}"
 										includes="filter-*.properties" defaultexcludes="false" />
 								</delete>
+								 -->
 							</tasks>
 						</configuration>
 					</execution>

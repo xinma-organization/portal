@@ -62,6 +62,7 @@ public class PortalDownloadMessageTask implements Runnable {
 			} catch (Throwable e) {
 				logger.error("catch exception in PortalDownloadMessageTask.",
 						new PortalCustomException(e, PortalTaskError.PortalDownloadMessageTask));
+				break;
 			}
 		} while (true);
 
